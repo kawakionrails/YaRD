@@ -7,7 +7,7 @@ import androidx.viewbinding.ViewBinding
 import io.github.kawaki.yard.utils.Constants
 
 abstract class BaseActivity<VIEW_BINDING : ViewBinding>(
-    private val layoutInflater: (
+    private val inflater: (
         layoutInflater: LayoutInflater,
     ) -> VIEW_BINDING,
 ) : AppCompatActivity() {
@@ -17,11 +17,17 @@ abstract class BaseActivity<VIEW_BINDING : ViewBinding>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = inflater.invoke(layoutInflater)
         if (_binding != null) {
-            _binding = getViewBinding()
+            setContentView(binding.root)
         } else {
             throw IllegalArgumentException(Constants.BINDING_CANNOT_BE_NULL)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     protected abstract fun getViewBinding(): VIEW_BINDING

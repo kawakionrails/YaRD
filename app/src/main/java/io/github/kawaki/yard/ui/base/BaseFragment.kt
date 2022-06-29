@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
 import io.github.kawaki.yard.utils.Constants
 
 abstract class BaseFragment<VIEW_BINDING : ViewBinding>(
-    private val layoutInflater: (
+    private val inflater: (
         layoutInflater: LayoutInflater,
     ) -> VIEW_BINDING,
 ) : Fragment() {
@@ -22,12 +22,17 @@ abstract class BaseFragment<VIEW_BINDING : ViewBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        _binding = layoutInflater.invoke(inflater)
+        _binding = this.inflater.invoke(inflater)
         if (_binding != null) {
             return binding.root
         } else {
             throw IllegalArgumentException(Constants.BINDING_CANNOT_BE_NULL)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

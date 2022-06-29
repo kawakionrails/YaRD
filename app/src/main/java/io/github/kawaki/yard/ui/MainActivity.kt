@@ -1,19 +1,27 @@
 package io.github.kawaki.yard.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kawaki.yard.databinding.ActivityMainBinding
+import io.github.kawaki.yard.ui.base.BaseActivity
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-    private lateinit var binding: ActivityMainBinding
+    private val viewModel by viewModels<MainViewModel>()
+
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setUpActivity()
+    }
+
+    private fun setUpActivity() {
+        // TODO: Not yet implemented
     }
 
 }
