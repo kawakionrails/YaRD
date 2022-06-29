@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -59,6 +60,9 @@ dependencies {
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
 }
 
 kapt {
