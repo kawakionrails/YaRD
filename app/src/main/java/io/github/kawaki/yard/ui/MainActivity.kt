@@ -1,9 +1,11 @@
-package io.github.kawaki.yard
+package io.github.kawaki.yard.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.kawaki.yard.databinding.ActivityMainBinding
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
